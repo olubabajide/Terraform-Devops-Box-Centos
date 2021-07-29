@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
 
-TERRAFORM_VERSION="0.11.7"
-PACKER_VERSION="0.10.2"
+TERRAFORM_VERSION="1.0.3"
+PACKER_VERSION="1.7.4"
 # create new ssh key
 [[ ! -f /home/centos/.ssh/mykey ]] \
 && mkdir -p /home/centos/.ssh \
@@ -22,8 +22,8 @@ if [[ $? == 127 ]]; then
     python3 get-pip.py
 fi
 # install awscli and ebcli
-pip install -U awscli
-pip install -U awsebcli
+yum install -y awscli
+yum install -y awsebcli
 
 #terraform
 T_VERSION=$(terraform -v | head -1 | cut -d ' ' -f 2 | tail -c +2)
