@@ -5,12 +5,16 @@ TERRAFORM_VERSION="1.0.3"
 PACKER_VERSION="1.7.4"
 # create new ssh key
 [[ ! -f /home/centos/.ssh/mykey ]] \
+&& useradd centos && echo "password" |passwd --stdin centos
 && mkdir -p /home/centos/.ssh \
 && ssh-keygen -f /home/centos/.ssh/mykey -N '' \
 && chown -R centos:centos /home/centos/.ssh
 
 # install packages
-yum update -y
+yum -y update 
+yum -y install epel-repo
+yum -y install ansible
+yum -y install python
 yum -y install docker.io ansible unzip
 # add docker privileges
 usermod -G docker centos
