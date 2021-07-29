@@ -6,20 +6,21 @@ PACKER_VERSION="1.7.4"
 # create new ssh key
 [[ ! -f /home/centos/.ssh/mykey ]] \
 && useradd centos && echo "password" |passwd --stdin centos
-&& mkdir -p /home/centos/.ssh \
-&& ssh-keygen -f /home/centos/.ssh/mykey -N '' \
-&& chown -R centos:centos /home/centos/.ssh
+mkdir -p /home/centos/.ssh 
+ssh-keygen -f /home/centos/.ssh/mykey 
+chown -R centos:centos /home/centos/.ssh
 
 # install packages
 yum -y update 
 yum -y install epel-repo
 yum -y install ansible
-yum -y install python
-yum -y install docker.io ansible unzip
-# add docker privileges
-usermod -G docker centos
+yum -y install wget
+yum -y install unzip
+yum makecache
+
 # install pip
-pip install -U pip && pip3 install -U pip
+yum install -y python2 python38 python39
+
 if [[ $? == 127 ]]; then
     wget -q https://bootstrap.pypa.io/get-pip.py
     python get-pip.py
@@ -27,7 +28,6 @@ if [[ $? == 127 ]]; then
 fi
 # install awscli and ebcli
 yum install -y awscli
-yum install -y awsebcli
 
 #terraform
 T_VERSION=$(terraform -v | head -1 | cut -d ' ' -f 2 | tail -c +2)
