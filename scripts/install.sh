@@ -10,7 +10,7 @@ PACKER_VERSION="1.7.4"
 && chown -R centos:centos /home/centos/.ssh
 
 # install packages
-yum update
+yum update -y
 yum -y install docker.io ansible unzip
 # add docker privileges
 usermod -G docker centos
