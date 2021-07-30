@@ -37,6 +37,7 @@ T_RETVAL=${PIPESTATUS[0]}
 && wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
 && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
 && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+T_VERSION=$(terraform -v | head -1 | cut -d ' ' -f 2 | tail -c +2)
 
 # packer
 P_VERSION=$(packer -v)
