@@ -49,4 +49,4 @@ P_RETVAL=$?
 && rm packer_${PACKER_VERSION}_linux_amd64.zip
 
 # clean up
-yum clean
+yum clean all
