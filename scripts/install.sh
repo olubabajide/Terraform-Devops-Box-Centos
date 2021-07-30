@@ -12,7 +12,7 @@ chown -R centos:centos /home/centos/.ssh
 
 # install packages
 yum -y update 
-yum -y install epel-repo
+yum -y install epel-release
 yum -y install ansible
 yum -y install wget
 yum -y install unzip
